@@ -43,11 +43,12 @@ class CommentAPIView(APIView):
 class FilterAPIView(APIView) :
     def post(self, request):
         print("FilterAPIView post")
-        filters = request.data
+        print(request.data)
 
-        my_profile = filters["my_profile"]
-        bloger_profile = filters["bloger_profile"]
-        mark = filters["mark"]
+        my_profile = request.data["my_profile"]
+        bloger_profile = request.data["bloger_profile"]
+        mark = request.data["mark"]
+        markOrder = request.data["markOrder"]
 
         comments = Comment.objects.all()
         if (mark.isdigit()) :
@@ -59,6 +60,14 @@ class FilterAPIView(APIView) :
         
         if (bloger_profile != "") :
             comments = comments.filter(bloger_profile__contains = bloger_profile)
+
+        markOrder = int(markOrder)
+        if (markOrder != 0) :
+            if (markOrder == 1) :
+                comments = comments.order_by("mark")
+            if (markOrder == -1) :
+                comments = comments.order_by('-mark')
+
 
         serializer = commentSerializer(data=comments, many=True)
         serializer.is_valid()

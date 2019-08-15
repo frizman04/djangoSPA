@@ -72,23 +72,28 @@ $(document).ready(function(){
 
 
 $("#my_profileFilter").on("input",function(){
-    ajaxGETWithFilter();
+    ajaxFilter();
 })
 
 $("#bloger_profileFilter").on("input",function(){
-    ajaxGETWithFilter();
+    ajaxFilter();
 })
 
 $("#markFilter").on("input",function(){
-    ajaxGETWithFilter();
+    ajaxFilter();
+})
+
+$("#markOrderFilter").on("change", function(){
+    ajaxFilter();
 })
 
 
-function ajaxGETWithFilter(){
+function ajaxFilter(){
     var data = {}
     data.my_profile = $("#my_profileFilter").val();
     data.bloger_profile = $("#bloger_profileFilter").val();
     data.mark = $("#markFilter").val();
+    data.markOrder = $('#markOrderFilter').find(":selected").val();
 
     var csrf_tokent = $("#csrf").val();
     $.ajax({
