@@ -71,6 +71,46 @@ $(document).ready(function(){
 })
 
 
+$("#my_profileFilter").on("input",function(){
+    ajaxGETWithFilter();
+})
+
+$("#bloger_profileFilter").on("input",function(){
+    ajaxGETWithFilter();
+})
+
+$("#markFilter").on("input",function(){
+    ajaxGETWithFilter();
+})
+
+
+function ajaxGETWithFilter(){
+    var data = {}
+    data.my_profile = $("#my_profileFilter").val();
+    data.bloger_profile = $("#bloger_profileFilter").val();
+    data.mark = $("#markFilter").val();
+
+    var csrf_tokent = $("#csrf").val();
+    $.ajax({
+        type: "POST",
+        url: "/Filter",
+        data: JSON.stringify(data),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        beforeSend: function (xhr, settings) {
+            xhr.setRequestHeader("X-CSRFToken", csrf_tokent);
+        },
+        success: function(data){
+            displayComments(data);
+        },
+        error: function(errMsg) {
+            console.log(errMsg);
+        },                
+        failure: function(errMsg) {
+            console.log(errMsg);
+        }
+    });
+}
 
 
 function displayComments(data){
