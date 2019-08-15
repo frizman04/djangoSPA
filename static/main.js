@@ -13,6 +13,7 @@ $("#btnAddCommentSubmit").on("click", function(){
     data["bloger_profile"] = $("#inputFieldBlogerAccount").val();
     data["review"]  = $("#inputFieldReview").val();
     data["mark"] = $("#inputFieldRating").val();
+    console.log(data);
 
     if (data.my_profile != "" && data.bloger_profile != "" && data.review != "" && data.mark != ""){
         var markInt = parseInt(data.mark,10);
@@ -88,6 +89,29 @@ $("#markOrderFilter").on("change", function(){
 })
 
 
+$(".fa-star").mouseenter(function(){
+    $("span.fa").removeClass("checked");
+    $(this).prevAll().addClass("checked");
+    $(this).addClass("checked");
+});
+
+$(".fa-star").mouseleave(function(){
+    $("span.fa").removeClass("checked");
+    var markValue = $("#inputFieldRating").val();
+    $("span.fa").slice(0,markValue).addClass("checked");
+});
+
+$(".fa-star").on("click", function(){
+    $("span.fa").removeClass("checked");
+    $(this).prevAll().addClass("checked");
+    $(this).addClass("checked");
+
+    markValue = $(this).prevAll().length + 1
+    $("#inputFieldRating").val(markValue)
+})
+
+
+
 function ajaxFilter(){
     var data = {}
     data.my_profile = $("#my_profileFilter").val();
@@ -134,3 +158,4 @@ function displayComments(data){
         commentCard.appendTo("#commentTable");
     });
 } 
+

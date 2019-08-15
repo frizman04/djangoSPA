@@ -7,3 +7,15 @@
 .card{
     margin-top: 30px;
 }
+
+.checked {
+    color: orange;
+}
+
+.star-holder{
+    margin: 15px;
+}
+
+.fa-star{
+    font-size: 50px;
+}
