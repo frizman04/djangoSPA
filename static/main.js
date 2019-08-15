@@ -144,14 +144,19 @@ function ajaxFilter(){
 
 function displayComments(data){
     $("#commentTable").empty();
-
     data.forEach(comentData => {
         var commentCard = $("#commentCardExmpl").clone()
         commentCard.removeAttr("id");
         commentCard.removeAttr("hidden");
 
         commentCard.find(".my_profile").text(comentData["my_profile"]);
+        commentCard.find(".my_profile").attr("href",
+            "https://www.instagram.com/" + comentData["my_profile"]);
+
         commentCard.find(".bloger_profile").text(comentData["bloger_profile"]);
+        commentCard.find(".bloger_profile").attr("href",
+            "https://www.instagram.com/" + comentData["bloger_profile"]);
+
         commentCard.find(".review").text(comentData["review"]);
         commentCard.find(".mark").text(comentData["mark"]);
 
