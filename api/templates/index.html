@@ -1,0 +1,120 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+
+
+
+    <title>SPA</title>
+</head>
+<body>
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+        <h5 class="my-0 mr-md-auto font-weight-normal">Django SPA</h5>
+      </div>
+      
+      <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+        <h1 class="display-4">Коментарии</h1>
+        <p class="lead">Здесь вы можете создавать новые коментарии и читать существующие</p>
+      </div>
+      
+      <div class="container">
+        
+        <div class="row">
+          <div class="col-12">
+              <a href="#addComentForm" rel="modal:open" id="btnAddComment" class="btn btn-lg btn-success float-right">
+                Добавить коментарий
+              </a>
+          </div>
+        </div>
+        
+        <div id="commentTable"></div>
+      </div>
+      
+
+      <input id="csrf" value="{{ csrf_token }}" hidden>
+
+      <!-- Card Example -->
+      <div class="card" id="commentCardExmpl" hidden>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-3 my_profile"></div>
+              <div class="col-3 bloger_profile"></div>
+              <div class="col-3 review"></div>
+              <div class="col-3 mark"></div>
+            </div>
+          </div>
+      </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="addComentForm" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+              <div class="text-center"><h5>Создание нового отзыва</h5></div>
+              <br>
+              
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Мой аккаунт</span>
+                  </div>
+                  <input type="text" id="inputFieldMyAccount" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+              </div>
+
+              <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroup-sizing-default">Аккаунт блогера</span>
+                    </div>
+                    <input type="text"  id="inputFieldBlogerAccount" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+              </div>
+
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Рейтинг</span>
+                  </div>
+                  <input type="number" min="0" max="5" step="1" id="inputFieldRating"  class="form-control" />
+              </div>
+              
+              <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Отзыв</span>
+                  </div>
+                  <textarea id="inputFieldReview" class="form-control" aria-label="With textarea"></textarea>
+              </div>
+
+              <br>
+              
+              <div class="row">
+                <div class="col-12">
+                  <div id="btnAddCommentSubmit" class="btn btn-md btn-success float-right " data-dismiss="modal">
+                    Добавить
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          
+        </div>
+      </div>
+
+      <script type="text/javascript" src="{% static 'main.js'  %}" ></script>
+
+    
+</body>
+</html>
